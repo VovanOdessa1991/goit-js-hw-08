@@ -12,6 +12,11 @@ form.addEventListener("submit", formSubmit);
 
 function formSubmit(event) {
    event.preventDefault();
+    if (form.elements.email.value=== ''|| form.elements.message.value ==='') {
+      alert("Заполните все поля!!");
+      
+      return;
+   }
    formObj.email = form.elements.email.value;
    formObj.message = form.elements.message.value;
    console.log(`Вот форма =>`);
