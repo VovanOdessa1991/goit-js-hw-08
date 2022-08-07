@@ -22,7 +22,7 @@ function formSubmit(event) {
    formObj.email = form.elements.email.value;
    formObj.message = form.elements.message.value;   
    event.target.reset();
-   clearForm();
+   clearLocalForm();
    
 }
 
@@ -62,16 +62,13 @@ function jsonTest(obj) {
    return obj;
 }
 
-function clearForm() {
-   console.log("Local Storage ====>");
-   console.log(localStorage.setItem(FORM_LOCAL, JSON.stringify(formObj)));
+function clearLocalForm() {
    try {
-      console.log("Выполняю!!!!!")
-       localStorage.clear();
+      
+       localStorage.removeItem(FORM_LOCAL);
 } catch (error) {
   console.log(error.name); // "SyntaxError"
   console.log(error.message); // Unexpected token W in JSON at position 0
    }
-   console.log("Delited Local Storage ====>");
-   console.log(localStorage.setItem(FORM_LOCAL, JSON.stringify(formObj)));
+   
 }

@@ -522,7 +522,7 @@ function formSubmit(event) {
     formObj.email = form.elements.email.value;
     formObj.message = form.elements.message.value;
     event.target.reset();
-    clearForm();
+    clearLocalForm();
 }
 form.addEventListener("input", (0, _lodashThrottleDefault.default)(formInput, 500));
 // form.addEventListener("submit", formInput);
@@ -546,18 +546,13 @@ function jsonTest(obj) {
     if (obj === undefined) return "";
     return obj;
 }
-function clearForm() {
-    console.log("Local Storage ====>");
-    console.log(localStorage.setItem(FORM_LOCAL, JSON.stringify(formObj)));
+function clearLocalForm() {
     try {
-        console.log("\u0412\u044B\u043F\u043E\u043B\u043D\u044F\u044E!!!!!");
-        localStorage.clear();
+        localStorage.removeItem(FORM_LOCAL);
     } catch (error) {
         console.log(error.name); // "SyntaxError"
         console.log(error.message); // Unexpected token W in JSON at position 0
     }
-    console.log("Delited Local Storage ====>");
-    console.log(localStorage.setItem(FORM_LOCAL, JSON.stringify(formObj)));
 }
 
 },{"lodash.throttle":"bGJVT","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bGJVT":[function(require,module,exports) {
