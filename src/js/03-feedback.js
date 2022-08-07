@@ -3,7 +3,7 @@ import throttle from 'lodash.throttle';
 
 const form = document.querySelector(".feedback-form");
 const FORM_LOCAL = "feedback-form-state";
-let formObj = {}
+let formObj = {};
 start();
 console.log(form);
 
@@ -21,8 +21,9 @@ function formSubmit(event) {
    
    formObj.email = form.elements.email.value;
    formObj.message = form.elements.message.value;   
-   event.target.reset();
+   
    clearLocalForm();
+   event.target.reset();
    
 }
 
@@ -44,8 +45,9 @@ function formInput(event) {
 }
 
 function start() {
-   console.log(`Вот форма =>`);
-   console.log(formObj);
+   // console.log(`Вот форма =>`);
+   // console.log(formObj);
+
    if (!localStorage.getItem(FORM_LOCAL)) {
       return;
    }   
@@ -64,8 +66,9 @@ function jsonTest(obj) {
 
 function clearLocalForm() {
    try {
+      formObj = {};
+      localStorage.removeItem(FORM_LOCAL);
       
-       localStorage.removeItem(FORM_LOCAL);
 } catch (error) {
   console.log(error.name); // "SyntaxError"
   console.log(error.message); // Unexpected token W in JSON at position 0

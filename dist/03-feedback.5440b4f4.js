@@ -521,8 +521,8 @@ function formSubmit(event) {
     }
     formObj.email = form.elements.email.value;
     formObj.message = form.elements.message.value;
-    event.target.reset();
     clearLocalForm();
+    event.target.reset();
 }
 form.addEventListener("input", (0, _lodashThrottleDefault.default)(formInput, 500));
 // form.addEventListener("submit", formInput);
@@ -535,8 +535,8 @@ function formInput(event) {
     console.log(localStorage.getItem(FORM_LOCAL));
 }
 function start() {
-    console.log(`Вот форма =>`);
-    console.log(formObj);
+    // console.log(`Вот форма =>`);
+    // console.log(formObj);
     if (!localStorage.getItem(FORM_LOCAL)) return;
     formObj = JSON.parse(localStorage.getItem(FORM_LOCAL));
     form.elements.email.value = jsonTest(formObj.email);
@@ -548,6 +548,7 @@ function jsonTest(obj) {
 }
 function clearLocalForm() {
     try {
+        formObj = {};
         localStorage.removeItem(FORM_LOCAL);
     } catch (error) {
         console.log(error.name); // "SyntaxError"
