@@ -16,13 +16,14 @@ function formSubmit(event) {
       alert("Заполните все поля!!");
       
       return;
-   }
+    }
+   
+   
    formObj.email = form.elements.email.value;
-   formObj.message = form.elements.message.value;
-   console.log(`Вот форма =>`);
-   console.log(formObj);
-   localStorage.removeItem(FORM_LOCAL);
+   formObj.message = form.elements.message.value;   
    event.target.reset();
+   clearForm();
+   
 }
 
 
@@ -42,12 +43,35 @@ function formInput(event) {
    console.log(localStorage.getItem(FORM_LOCAL));
 }
 
-function start(){
+function start() {
+   console.log(`Вот форма =>`);
+   console.log(formObj);
    if (!localStorage.getItem(FORM_LOCAL)) {
       return;
    }   
    formObj = JSON.parse(localStorage.getItem(FORM_LOCAL));
-   form.elements.email.value = formObj.email;
-   form.elements.message.value = formObj.message;
+   form.elements.email.value = jsonTest(formObj.email);
+   form.elements.message.value = jsonTest(formObj.message);
   
+}
+
+function jsonTest(obj) {
+   if (obj === undefined) {
+      return '';
+   }
+   return obj;
+}
+
+function clearForm() {
+   console.log("Local Storage ====>");
+   console.log(localStorage.setItem(FORM_LOCAL, JSON.stringify(formObj)));
+   try {
+      console.log("Выполняю!!!!!")
+       localStorage.clear();
+} catch (error) {
+  console.log(error.name); // "SyntaxError"
+  console.log(error.message); // Unexpected token W in JSON at position 0
+   }
+   console.log("Delited Local Storage ====>");
+   console.log(localStorage.setItem(FORM_LOCAL, JSON.stringify(formObj)));
 }
